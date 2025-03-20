@@ -1,0 +1,28 @@
+name: Using sonarqube for DeveloperFolio
+
+on:
+  push:
+    branches:
+    - master
+jobs:
+  sonarqubejob:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+      
+    - name: SonarQube for Static Code Analysis
+      uses: sonarsource/sonarcloud-github-action@master
+      env:
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        SONAR_TOKEN: ${{secrets.SONAR_TOKEN}}
+      with:
+        args: >
+          -Dsonar.organization=villaextech    
+          -Dsonar.projectKey=HrisFrontend
+
+
+          -Dsonar.host.url=https://sonarcloud.io
+
